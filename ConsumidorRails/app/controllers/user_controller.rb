@@ -1,8 +1,10 @@
 class UserController < ApplicationController
   def index
+    @title = "Banca Eletronica Cooperativa"
   end
 
   def new
+    @title = "Ingreso"
     @cedula = params[:cedula]
     @pass = params[:password]
     @client = soap_service
