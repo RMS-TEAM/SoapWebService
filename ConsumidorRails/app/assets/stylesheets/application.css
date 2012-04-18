@@ -44,12 +44,20 @@ a {
     margin-right: auto;
 }
 
-.logo {
-    width: 20%;
+#header .logo {
+    width: 23%;
     margin-left: 10%;
     float: left;
     height: 100%;
+    font-family: 'Amaranth', sans-serif;
+    padding-top: 18px;
 
+}
+
+#header .logo h2, #header .logo h4 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 nav {
