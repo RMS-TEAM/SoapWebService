@@ -110,7 +110,6 @@ nav ul li a:hover {
     background-image: -ms-linear-gradient(top, white, #E6E6E6);
     background-image: -o-linear-gradient(top, white, #E6E6E6);
     background-image: linear-gradient(top, white, #E6E6E6);
-
 }
 
 
@@ -123,8 +122,6 @@ nav ul li a:hover {
     min-height: 500px;
     padding: 30px;
     text-align: justify;
-
-
 }
 
 
