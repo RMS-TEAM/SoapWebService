@@ -18,7 +18,7 @@ body{
     top: 0;
     margin: 0;
 
-    }
+}
 
 #header{
     background: #FAFAFA;
@@ -119,40 +119,37 @@ nav ul li a:hover {
 
 }
 
-<<<<<<< HEAD
 
 /* Footer */
 
-#footer {
-    border-top: 1px solid #CCC;
-    text-align: center;
-}
 
-=======
 #footer{
-    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+    border-top: 1px solid #CCC;
+    color: #636363;
+
 }
 
 #footer .desarrollo{
+    margin-left: 10%;
     float: left;
-    color: #dcdcdc;
 
 }
 
 #footer .aliados  {
-    color: #d3d3d3;
+    margin-right: 10%;
     float: right;
 }
->>>>>>> 67a61c4c80633483d3c49bcc61b29e6ee269c38e
+
 #footer img{
     width: 100px;
 }
 
 
 /* Mensajes flash */
+
 .error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
 .notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
