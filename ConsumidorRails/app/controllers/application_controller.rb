@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
     @token
   end
 
-  def set_token
-
+  def set_token(token)
+    @token = token
   end
 
   private
