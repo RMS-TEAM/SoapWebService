@@ -44,12 +44,20 @@ a {
     margin-right: auto;
 }
 
-.logo {
-    width: 20%;
+#header .logo {
+    width: 23%;
     margin-left: 10%;
     float: left;
     height: 100%;
+    font-family: 'Amaranth', sans-serif;
+    padding-top: 18px;
 
+}
+
+#header .logo h2, #header .logo h4 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 nav {
@@ -102,7 +110,6 @@ nav ul li a:hover {
     background-image: -ms-linear-gradient(top, white, #E6E6E6);
     background-image: -o-linear-gradient(top, white, #E6E6E6);
     background-image: linear-gradient(top, white, #E6E6E6);
-
 }
 
 
@@ -115,8 +122,6 @@ nav ul li a:hover {
     min-height: 500px;
     padding: 30px;
     text-align: justify;
-
-
 }
 
 
