@@ -1,5 +1,8 @@
+
+<div class="login" >
 <h1>Ingreso</h1>
 <%= form_tag("/user/new", :method => "post") do %>
+
 <table>
   <tr>
     <td><%= label_tag(:cedula, "Cedula:") %></td>
@@ -14,11 +17,13 @@
     <td><%= select_tag(:cooperativa, options_for_select(@cooperativas)) %></td>
   </tr>
   <tr>
-    <td><%= submit_tag("Ingresar") %></td>
     <td></td>
+    <td><%= submit_tag("Continuar",:class => "submit") %></td>
   </tr>
 </table>
 <% end %>
+</div>
+
 
 
 
