@@ -129,18 +129,18 @@ nav ul li a:hover {
     margin-top: 10px;
     border-top: 1px solid #CCC;
     text-align: center;
+    color: #636363;
 }
 
 #footer .desarrollo{
     margin-left: 10%;
     float: left;
-    color: #dcdcdc;
+
 
 }
 
 #footer .aliados  {
     margin-right: 10%;
-    color: #d3d3d3;
     float: right;
 }
 
