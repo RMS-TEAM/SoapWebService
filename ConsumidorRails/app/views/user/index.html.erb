@@ -1,14 +1,24 @@
 <h1>Ingreso</h1>
-
 <%= form_tag("/user/new", :method => "post") do %>
-    <%= label_tag(:cedula, "Cedula:") %>
-    <%= text_field_tag(:cedula) %>
-
-    <%= label_tag(:password, "Password:") %>
-    <%= password_field_tag(:password) %>
-
-    <%= submit_tag("Ingresar") %>
-
-
+<table>
+  <tr>
+    <td><%= label_tag(:cedula, "Cedula:") %></td>
+    <td><%= text_field_tag(:cedula) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:password, "Password:") %></td>
+    <td><%= password_field_tag(:password) %></td>
+  </tr>
+  <tr>
+    <td><%= label_tag(:cooperativa, "Cooperativa:") %></td>
+    <td><%= select_tag(:cooperativa, options_for_select(@cooperativas)) %></td>
+  </tr>
+  <tr>
+    <td><%= submit_tag("Ingresar") %></td>
+    <td></td>
+  </tr>
+</table>
 <% end %>
+
+
 

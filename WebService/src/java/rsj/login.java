@@ -9,9 +9,17 @@ import security.Secure;
 @WebService(serviceName = "login")
 public class login {
 
+    /*
+     * Retorna la lista de cooperativas registradas en la plataforma
+     */
+    @WebMethod
+    public String[] get_cooperativas(){
+        String cooperativas[] = {"true", "Coomeva", "Colanta", "UPB", "UdeA"};
+        return cooperativas;
+    }
     
     /*
-     * 
+     * Metodo para ingresar a la plataforma
      */
     @WebMethod
     public String[] ingresar(String cedula, String pass){
