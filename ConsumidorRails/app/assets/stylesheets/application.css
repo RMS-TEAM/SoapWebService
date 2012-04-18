@@ -18,7 +18,7 @@ body{
     top: 0;
     margin: 0;
 
-    }
+}
 
 #header{
     background: #FAFAFA;
@@ -128,19 +128,15 @@ nav ul li a:hover {
     margin-right: auto;
     margin-top: 10px;
     border-top: 1px solid #CCC;
-    text-align: center;
 }
 
 #footer .desarrollo{
     margin-left: 10%;
     float: left;
-    color: #dcdcdc;
-
 }
 
 #footer .aliados  {
     margin-right: 10%;
-    color: #d3d3d3;
     float: right;
 }
 
@@ -150,6 +146,7 @@ nav ul li a:hover {
 
 
 /* Mensajes flash */
+
 .error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
 .notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
