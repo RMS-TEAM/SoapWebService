@@ -37,4 +37,10 @@ public class login {
         }
         return retorne;
     }
+    
+    @WebMethod
+    public boolean conectado(String token){
+        Secure secure = new Secure();
+        return secure.existeToken(token);
+    }
 }
