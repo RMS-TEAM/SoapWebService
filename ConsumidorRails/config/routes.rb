@@ -1,7 +1,6 @@
 SoapApp::Application.routes.draw do
-  get "pages/home"
 
-  match "/about", :to => "pages#about"
+  get "pages/home"
 
   get "user/index"
   post "user/new"
@@ -10,6 +9,11 @@ SoapApp::Application.routes.draw do
   get "control/new"
   get "control/codes"
   get "control/restar"
+
+  match "/about", :to => "pages#about"
+
+
+  match '/signout', :to => 'user#destroy'
 
   root :to => 'user#index'
 end
