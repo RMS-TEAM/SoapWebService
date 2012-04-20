@@ -1,5 +1,9 @@
 package rsj;
 
+import DAO.FactoryDAO;
+import DAO.InterfaceDAO;
+import Gestion.Login;
+import java.sql.SQLException;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -25,16 +29,20 @@ public class login {
     public String[] ingresar(String cedula, String pass){
         Secure secure = new Secure();
         String retorne[] = new String[3];
-        
-        
-        if(cedula.equals("123456") && pass.equals("123456")){
-            retorne[0] = "true";
-            retorne[1] = "Ingreso exitoso!";
-            retorne[2] = secure.generarToken();
-        }else{
-            retorne[0] = "false";
-            retorne[1] = "usuario o contraseña erronea ";
-        }
+        try{
+            InterfaceDAO daoEntidad = FactoryDAO.getDAO("login");
+            Login loginEnt = (Login) daoEntidad.find(cedula, pass);
+            if(loginEnt.getCedula().equals(cedula) && loginEnt.getPassword().equals(pass)) {
+                retorne[0] = "true";
+                retorne[1] = "Ingreso exitoso!";
+                retorne[2] = secure.generarToken(); 
+            }else{
+                retorne[0] = "false";
+                retorne[1] = "usuario o contraseña erronea ";
+            }
+        }catch(Exception e){
+            System.out.println("Error: SQL\n"+e.getMessage());
+        }        
         return retorne;
     }
     
