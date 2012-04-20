@@ -53,7 +53,11 @@ class UserController < ApplicationController
     end
   end
 
+  def show
+     @title = "Saldos"
 
+  end
+  private
   def destroy
     sign_out
     redirect_to root_path

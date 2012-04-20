@@ -5,10 +5,11 @@ SoapApp::Application.routes.draw do
   get "user/index"
   post "user/new"
   get "user/new"
-
+  get "user/show"
   get "control/new"
   get "control/codes"
   get "control/restar"
+
 
   match "/about", :to => "pages#about"
 
