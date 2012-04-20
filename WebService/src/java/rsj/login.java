@@ -4,6 +4,7 @@ import DAO.FactoryDAO;
 import DAO.InterfaceDAO;
 import Gestion.Login;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -30,8 +31,11 @@ public class login {
         Secure secure = new Secure();
         String retorne[] = new String[3];
         try{
+            ArrayList al = new ArrayList();
+            al.add(cedula);
+            al.add(pass);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("login");
-            Login loginEnt = (Login) daoEntidad.find(cedula, pass);
+            Login loginEnt = (Login) daoEntidad.find(al);
             if(loginEnt.getCedula().equals(cedula) && loginEnt.getPassword().equals(pass)) {
                 retorne[0] = "true";
                 retorne[1] = "Ingreso exitoso!";
@@ -50,5 +54,14 @@ public class login {
     public boolean conectado(String token){
         Secure secure = new Secure();
         return secure.existeToken(token);
+    }
+    
+    @WebMethod
+    public boolean salir(String token){
+        Secure secure = new Secure();
+        int salida = secure.eliminarToken(token);
+        if (salida > 0)
+            return true;
+        else return false;
     }
 }

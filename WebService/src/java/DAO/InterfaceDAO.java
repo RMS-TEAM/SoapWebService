@@ -1,14 +1,14 @@
 package DAO;
-import java.util.Vector;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 //Interface que define los metodos que tienen que implementar las clases DAO
 public interface InterfaceDAO {
 
-    public boolean insert(Vector entidad) throws SQLException;
-    public Entidad find(String nick, String pass) throws SQLException;
-    public int update(Entidad bean, String condicion) throws SQLException;
-    public int delete(String condicion) throws SQLException;
-    public Vector select(String condicion) throws SQLException;
-    public Vector selectIterator(String condicion) throws SQLException;
+    public boolean insert(ArrayList entidad) throws SQLException;
+    public Entidad find(ArrayList entidad) throws SQLException;
+    public int update(ArrayList entidad) throws SQLException;
+    public int delete(ArrayList entidad) throws SQLException;
+    public ArrayList select(ArrayList entidad) throws SQLException;
+    public ArrayList selectIterator(ArrayList entidad) throws SQLException;
 }
