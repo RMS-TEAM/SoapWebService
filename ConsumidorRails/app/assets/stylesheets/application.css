@@ -30,6 +30,8 @@ body{
     min-height: 70px;
     top: 0;
     margin-top: -17px;
+    position: fixed;
+    min-width: 100%
 }
 
 a {
@@ -122,6 +124,7 @@ nav ul li a:hover {
     min-height: 500px;
     padding: 30px;
     text-align: justify;
+    padding-top: 50px;
 }
 
 
