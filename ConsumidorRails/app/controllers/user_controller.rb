@@ -26,12 +26,14 @@ class UserController < ApplicationController
 
   def new
     @title = "Ingreso"
+    cedula = params[:cedula]
+    pass = params[:password]
+    cooperativa = params[:cooperativa]
     if signed_in?
       @mensaje = "Sigues conectado"
+    elsif cedula.blank? || pass.blank? || cooperativa.blank?
+      redirect_to root_path
     else
-      cedula = params[:cedula]
-      pass = params[:password]
-      cooperativa = params[:cooperativa]
       client = soap_service
       respuesta = client.request :web, :ingresar, :body=> {"arg0"=> cedula, "arg1" => pass}
       if respuesta.success?
@@ -57,7 +59,7 @@ class UserController < ApplicationController
      @title = "Saldos"
 
   end
-  private
+
   def destroy
     sign_out
     redirect_to root_path

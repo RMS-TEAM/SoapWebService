@@ -45,11 +45,22 @@ class ApplicationController < ActionController::Base
           respuesta = r[:return]
         end
       end
+      if respuesta == false
+        sign_out
+      end
       return respuesta
     end
   end
 
   def sign_out
+    client = soap_service
+    respuesta = client.request :web, :salir, :body=> {"arg0"=> cookies[:token]}
+    if respuesta.success?
+      r = respuesta.to_array(:conectado_response).first
+      if r
+        respuesta = r[:return]
+      end
+    end
     cookies.delete(:token)
     cookies.delete(:cedula)
     cookies.delete(:cooperativa)

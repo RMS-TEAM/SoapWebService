@@ -5,26 +5,28 @@ import com.mysql.jdbc.Connection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginDAO implements InterfaceDAO {
 
-    public boolean insert(Vector entidad) throws SQLException {
+    public boolean insert(ArrayList entidad) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public int update(Entidad bean, String condicion) throws SQLException {
+    public int update(ArrayList entidad) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    //Ingresa en la base de datos y devuelve si el usuario y la contraseña coinciden 
-    public Entidad find(String cedula, String pass) throws SQLException {
+    /*
+     * Ingresa en la base de datos y devuelve si el usuario y la contraseña coinciden 
+     */
+    public Entidad find(ArrayList entidad) throws SQLException {
         try {
             Connection con = JDBCConnection.getConexion();
-            //// Si la condición es null o vacia, no hay parte WHERE
-            String orden = "SELECT * FROM usuario where cedula ='"+cedula+"' and password ='"+pass+"'";
+            String orden = "SELECT * FROM usuario where cedula ='"+entidad.get(0) +"' and password ='"+entidad.get(1) +"'";
             java.sql.Statement sentencia = con.createStatement();
             ResultSet rs = sentencia.executeQuery(orden);
             Login login = new Login();
@@ -40,15 +42,15 @@ public class LoginDAO implements InterfaceDAO {
         }
     }
 
-    public Vector select(String condicion) throws SQLException {
+    public ArrayList select(ArrayList entidad) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public int delete(String condicion) throws SQLException {
+    public int delete(ArrayList entidad) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Vector selectIterator(String condicion) throws SQLException {
+    public ArrayList selectIterator(ArrayList entidad) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
