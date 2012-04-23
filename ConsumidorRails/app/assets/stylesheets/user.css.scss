@@ -42,14 +42,18 @@
 }
 
 
-#content .user_info table{
+#content table{
   border-spacing: 0px;
-  width: 86%;
+  width: 100%;
   margin: auto;
   margin-top:50px;
   text-align: center;
   border-radius: 10px;
 
+}
+
+#content .user_info{
+  min-height: 250px;
 }
 
 #content .user_info table .tabla-izq{
@@ -75,7 +79,7 @@
 }
 
 
-#content .user_info table th {
+#content table th {
   border: 1px solid #CACACA;
   padding: 3px;
   background: #829AA8;
@@ -87,11 +91,12 @@
   border-bottom-color: #6B808D;
 }
 
-#content .user_info .titulo2{
+#content .titulo2{
   background: #E9F1F4;
   color: #333;
   border: 1px solid #E1E1E2;
   font-size: 13px;
+  width: 20%;
 }
 
 #content .user_info table td {
@@ -108,4 +113,23 @@
   float: right;
   width: 50%;
 }
+.ajustar{
+margin-top: 20px;
+margin-bottom: 20px;
+clear: both;
+}
+
+#content .detalles{
+  margin-top: 20px;
+}
+
+#content .detalles .titulo{
+  border-radius: 5px 5px 0 0  ;
+}
+
+
+
+
+
+
 

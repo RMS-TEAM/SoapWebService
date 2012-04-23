@@ -6,6 +6,7 @@ SoapApp::Application.routes.draw do
   post "user/new"
   get "user/new"
   get "user/show"
+  get "user/detalles"
   get "control/new"
   get "control/codes"
   get "control/restar"
