@@ -24,7 +24,6 @@ public class Secure {
             al.add(token);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
             boolean tokenEnt = (boolean) daoEntidad.insert(al);
-            System.out.println(token+"******************");
             if(tokenEnt)
                 return token;
             else

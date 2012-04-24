@@ -5,6 +5,5 @@ module UserHelper
       @acum = value.last + @acum
     end
     @acum
-
   end
 end

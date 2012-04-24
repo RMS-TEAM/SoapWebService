@@ -12,12 +12,48 @@
  *= require_tree .
 */
 
+
+html {
+    overflow: auto;
+}
+
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,0,0.2);
+}
+
+
 body{
     background-color: white;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
     color: #333;
-    top: 0;
+    padding: 0px;
     margin: 0;
-
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #header{

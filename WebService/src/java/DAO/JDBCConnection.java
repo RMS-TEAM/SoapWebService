@@ -2,7 +2,7 @@ package DAO;
 
 import java.sql.DriverManager;
 import com.mysql.jdbc.Connection;
-import java.sql.Connection;
+//import java.sql.Connection;
 
 //Conexion con mysql
 public class JDBCConnection {
