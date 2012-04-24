@@ -16,7 +16,12 @@
         <th class="titulo2">Numero</th>
         <th class="titulo2">Saldo Disponible</th>
       </tr>
-
+       <tr>
+         <td>oeooeoe</td>
+         <td>oeooeoe</td>
+         <td>oeooeoe</td>
+         <td>oeooeoe</td>
+       </tr>
       <% @response1.each do |dato|%>
       <tr>
         <td><%= dato[0] %></td>
@@ -29,7 +34,7 @@
       <tr>
         <td class="espacio" colspan="2"></td>
         <td class="total izq">Total</td>
-        <td class="total der"><strong><%= number_to_currency(total(@response1)) %></td>
+        <td class="total der"><strong><%= number_to_currency(total(@response1)) %></strong></td>
       </tr>
 
     </table>
@@ -60,7 +65,7 @@
       <tr>
         <td class="espacio" colspan="2"></td>
         <td class="total izq">Total</td>
-        <td class="total der"><strong><%= number_to_currency(total(@response2)) %></td>
+        <td class="total der"><strong><%= number_to_currency(total(@response2)) %></strong></td>
       </tr>
     </table>
 
