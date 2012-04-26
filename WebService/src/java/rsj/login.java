@@ -19,8 +19,18 @@ public class login {
      */
     @WebMethod
     public String[] get_cooperativas(){
-        String cooperativas[] = {"true", "Coomeva", "Colanta", "UPB", "UdeA"};
-        return cooperativas;
+        try{
+            ArrayList<String> al = new ArrayList<String>();
+            InterfaceDAO daoEntidad = FactoryDAO.getDAO("cooperativa");
+            al = (ArrayList<String>) daoEntidad.select(al);
+            String cooperativas[] = new String[al.size()];
+            for(int i = 0; i < al.size()-1; i++)
+                cooperativas[i] = al.get(i); 
+            return cooperativas;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
     
     /*
