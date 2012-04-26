@@ -26,12 +26,14 @@ class UserController < ApplicationController
 
   def new
     @title = "Ingreso"
+    cedula = params[:cedula]
+    pass = params[:password]
+    cooperativa = params[:cooperativa]
     if signed_in?
       @mensaje = "Sigues conectado"
+    elsif cedula.blank? || pass.blank? || cooperativa.blank?
+      redirect_to root_path
     else
-      cedula = params[:cedula]
-      pass = params[:password]
-      cooperativa = params[:cooperativa]
       client = soap_service
       respuesta = client.request :web, :ingresar, :body=> {"arg0"=> cedula, "arg1" => pass}
       if respuesta.success?
@@ -55,6 +57,14 @@ class UserController < ApplicationController
 
   def show
      @title = "Saldos"
+     @response1  = [["cooprudea",'ahorro1','123-4567-89',50000],["cooprudea1",'ahorro2','123-4567-33',440000]]
+     @response2 = [['cooprudea', 'Casa', '54567856',40000000],['cooprudea', 'Estudios', '54666856',2000000],['cooprudea', 'Carro', '57856',25000000]]
+  end
+
+  def detalles
+    @title = "movimientos"
+    @response1  = [["cooprudea",'ahorro1','123-4567-89',50000],["cooprudea1",'ahorro2','123-4567-33',440000]]
+    @response2 = [['cooprudea', 'Casa', '54567856',40000000],['cooprudea', 'Estudios', '54666856',2000000],['cooprudea', 'Carro', '57856',25000000]]
 
   end
 

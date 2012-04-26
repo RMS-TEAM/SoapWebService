@@ -1,46 +1,79 @@
 package security;
 
-import java.security.SecureRandom;
+import DAO.FactoryDAO;
+import DAO.InterfaceDAO;
+import Gestion.Token;
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Date;
 
 public class Secure {
     
-    private static ArrayList<String> tokens = new ArrayList<String>();//Lista de tokens para cada sesion
     private SecureRandom random = new SecureRandom();
     
     /*
      * Meto para generar un token por cada sesion 
      */
     public String generarToken(){
-        String token = new BigInteger(130, random).toString(32);
-        while(tokens.contains(token))
-            token = new BigInteger(130, random).toString(32);
-        token += " " + new Date().getTime();
-        tokens.add(token);
-        System.out.println(token+"******************");
-        return token;
+        try{
+            String token = new BigInteger(130, random).toString(32);
+            token += " " + new Date().getTime();
+
+            ArrayList al = new ArrayList();
+            al.add(token);
+            InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
+            boolean tokenEnt = (boolean) daoEntidad.insert(al);
+            if(tokenEnt)
+                return token;
+            else
+                return "";
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "";
+        }
     }
     
     /*
      * Retorna si existe el token, el token solo dura 10 minutos para cada sesion
      */
     public boolean existeToken(String token){
-        for(int i = 0; i < tokens.size(); i++){
-            System.out.println(tokens.get(i)+" el token "+ i);
+        try{
+            long millsecPerMinute = 60 * 1000;
+            String tok[] = token.split(" ");
+            long time = Long.valueOf(tok[1]);
+            boolean ret = false;
+            long diferencia = ( (new Date().getTime()) - time ) / millsecPerMinute;
+
+            ArrayList al = new ArrayList();
+            al.add(token);
+            InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
+            Token tokenEnt = (Token) daoEntidad.find(al);
+            
+            if(diferencia > 10 && token.equals(tokenEnt.getToken())){        //Se paso el tiempo y se elimina el token
+                int tokenDelEnt = eliminarToken(token);
+                ret = false;
+            }else{
+                ret = true;
+            }
+            return ret;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
         }
-        long millsecPerMinute = 60 * 1000;
-        String tok[] = token.split(" ");
-        long time = Long.valueOf(tok[1]);
-        
-        long diferencia = ( (new Date().getTime()) - time ) / millsecPerMinute;
-        
-        if(diferencia > 10 && tokens.contains(token)){        //Se paso el tiempo y se elimina el token
-            tokens.remove(tokens.indexOf(token));
-        }
-        return tokens.contains(token);
     }
     
+    public int eliminarToken(String token){
+        try{
+            ArrayList al = new ArrayList();
+            al.add(token);
+            InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
+            int tokenDelEnt = (int) daoEntidad.delete(al);
+            return tokenDelEnt;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
     
 }

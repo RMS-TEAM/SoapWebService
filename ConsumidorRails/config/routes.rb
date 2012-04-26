@@ -2,10 +2,12 @@ SoapApp::Application.routes.draw do
 
   get "pages/home"
 
-  get "users/index"
-  post "users/new"
-  get "users/new"
-  get "users/show"
+  get "user/index"
+  post "user/new"
+  get "user/new"
+  get "user/show"
+  get "user/detalles"
+
   get "control/new"
   get "control/codes"
   get "control/restar"
