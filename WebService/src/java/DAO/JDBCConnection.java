@@ -19,7 +19,7 @@ public class JDBCConnection {
     
     private static Connection getJDBConnection() throws Exception{
         Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/bec";
+        String url = "jdbc:mysql://localhost:3306/bdcoop";
         connection = (Connection) DriverManager.getConnection(url, "root", "");
         return connection;
     }

@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31b15fe9d504732e674876c4485b61e6719e77d7
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- You may freely edit this file. See commented blocks below for -->
 <!-- some examples of how to customize the build. -->
@@ -70,6 +73,7 @@
 
     -->
 </project>
+<<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- You may freely edit this file. See commented blocks below for -->
@@ -143,3 +147,5 @@
     -->
 </project>
 >>>>>>> 0b2f663a329ac4eeb56193eaa7abcf72f5bc6e0e
+=======
+>>>>>>> 31b15fe9d504732e674876c4485b61e6719e77d7
