@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 28/03/2012, 08:06:14 AM
+    Created on : 26-abr-2012, 15:55:22
     Author     : Sebastian
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Calculadora</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Aja tu que</h1>
+        <h1>Hello World!</h1>
     </body>
 </html>
