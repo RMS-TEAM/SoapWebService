@@ -18,5 +18,5 @@ SoapApp::Application.routes.draw do
 
   match '/signout', :to => 'users#destroy'
 
-  root :to => 'users#index'
+  root :to => 'user#index'
 end
