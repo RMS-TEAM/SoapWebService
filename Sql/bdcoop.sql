@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-04-2012 a las 05:38:28
+-- Tiempo de generación: 26-04-2012 a las 20:44:35
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -184,6 +184,7 @@ INSERT INTO `producto` (`producto`, `nombre`, `entidad`, `agencia`, `clase`, `ti
 CREATE TABLE IF NOT EXISTS `tipo` (
   `tipo` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
+  `clase` int(11) NOT NULL,
   PRIMARY KEY (`tipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
