@@ -26,13 +26,13 @@ public class LoginDAO implements InterfaceDAO {
     public Entidad find(ArrayList entidad) throws SQLException {
         try {
             Connection con = JDBCConnection.getConexion();
-            String orden = "SELECT * FROM usuario where cedula ='"+entidad.get(0) +"' and password ='"+entidad.get(1) +"'";
+            String orden = "SELECT * FROM usuario where usuario ='"+entidad.get(0) +"' and clave ='"+entidad.get(1) +"'";
             java.sql.Statement sentencia = con.createStatement();
             ResultSet rs = sentencia.executeQuery(orden);
             Login login = new Login();
             while (rs.next()) {
-                login.setCedula(rs.getString("cedula"));
-                login.setPassword(rs.getString("password"));
+                login.setCedula(rs.getString("usuario"));
+                login.setPassword(rs.getString("clave"));
             }
             sentencia.close();
             return login;
