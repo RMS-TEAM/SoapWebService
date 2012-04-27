@@ -7,6 +7,8 @@ public class FactoryDAO {
             return new LoginDAO();
         if(dao.equals("token"))
             return new TokenDAO();
+        if(dao.equals("cooperativa"))
+            return new CooperativaDAO();
         return null;
     }
 }

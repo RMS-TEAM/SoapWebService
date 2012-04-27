@@ -1,8 +1,8 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
   def index
     if signed_in?
-      redirect_to "/user/new"
+      redirect_to "/users/new"
     else
       @title = "Banca Eletronica Cooperativa"
       client = soap_service
@@ -16,6 +16,7 @@ class UserController < ApplicationController
           if entro
             @cooperativas = respuesta[1..respuesta.length]
           else
+            @cooperativas = []
             flash[:error] = "Error al traer la lista de cooperativas"
             redirect_to root_path
           end
