@@ -104,7 +104,7 @@ INSERT INTO `cliente` (`cliente`, `nombre1`, `nombre2`, `apellido1`, `razon_soci
 --
 
 CREATE TABLE IF NOT EXISTS `entidad` (
-  `entidad` int(11) NOT NULL,
+  `entidad` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(11) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`entidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
