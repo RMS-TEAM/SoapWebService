@@ -23,9 +23,12 @@ public class login {
             ArrayList<String> al = new ArrayList<String>();
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("cooperativa");
             al = (ArrayList<String>) daoEntidad.select(al);
-            String cooperativas[] = new String[al.size()];
-            for(int i = 0; i < al.size()-1; i++)
-                cooperativas[i] = al.get(i); 
+            String cooperativas[] = new String[al.size()+1];
+            cooperativas[0] = "true";
+            for(int i = 1; i <= al.size(); i++){
+                cooperativas[i] = al.get(i-1); 
+                System.out.println(i+"      +++++++");
+            }
             return cooperativas;
         }catch(Exception e){
             System.out.println(e.getMessage());

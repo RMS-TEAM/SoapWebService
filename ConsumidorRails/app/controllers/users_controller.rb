@@ -16,6 +16,7 @@ class UsersController < ApplicationController
           if entro
             @cooperativas = respuesta[1..respuesta.length]
           else
+            @cooperativas = []
             flash[:error] = "Error al traer la lista de cooperativas"
             redirect_to root_path
           end
