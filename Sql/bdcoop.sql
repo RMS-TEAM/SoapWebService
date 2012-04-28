@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-04-2012 a las 07:19:55
+-- Tiempo de generación: 28-04-2012 a las 19:07:09
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `bec`
+-- Base de datos: `bdcoop`
 --
 
 -- --------------------------------------------------------
@@ -318,6 +318,24 @@ INSERT INTO `tipo` (`tipo`, `nombre`, `clase`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `token`
+--
+
+DROP TABLE IF EXISTS `token`;
+CREATE TABLE IF NOT EXISTS `token` (
+  `user_token` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `token`
+--
+
+INSERT INTO `token` (`user_token`) VALUES
+('61i3l03fmh4qincfmrbcap910b 1335557684675');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -340,7 +358,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario`, `entidad`, `agencia`, `nombre`, `apodo`, `clave`, `id_usuario`) VALUES
-(1, 1, 1, 'N', 'N', '1', 'N');
+(1, 1, 1, 'N', 'N', '1', 'N'),
+(12, 1, 1, 'n', '', '1', '');
 
 --
 -- Restricciones para tablas volcadas
@@ -356,8 +375,8 @@ ALTER TABLE `agencia`
 -- Filtros para la tabla `movimiento`
 --
 ALTER TABLE `movimiento`
-  ADD CONSTRAINT `movimiento_ibfk_11` FOREIGN KEY (`producto`) REFERENCES `producto` (`producto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `movimiento_ibfk_10` FOREIGN KEY (`tipo`) REFERENCES `tipo` (`tipo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `movimiento_ibfk_11` FOREIGN KEY (`producto`) REFERENCES `producto` (`producto`) ON UPDATE CASCADE,
   ADD CONSTRAINT `movimiento_ibfk_6` FOREIGN KEY (`entidad`) REFERENCES `entidad` (`entidad`) ON UPDATE CASCADE,
   ADD CONSTRAINT `movimiento_ibfk_7` FOREIGN KEY (`agencia`) REFERENCES `agencia` (`agencia`) ON UPDATE CASCADE,
   ADD CONSTRAINT `movimiento_ibfk_8` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cliente`) ON UPDATE CASCADE,
@@ -367,19 +386,19 @@ ALTER TABLE `movimiento`
 -- Filtros para la tabla `portafolio`
 --
 ALTER TABLE `portafolio`
-  ADD CONSTRAINT `portafolio_ibfk_8` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cliente`) ON UPDATE CASCADE,
   ADD CONSTRAINT `portafolio_ibfk_3` FOREIGN KEY (`entidad`) REFERENCES `entidad` (`entidad`) ON UPDATE CASCADE,
   ADD CONSTRAINT `portafolio_ibfk_4` FOREIGN KEY (`agencia`) REFERENCES `agencia` (`agencia`) ON UPDATE CASCADE,
   ADD CONSTRAINT `portafolio_ibfk_5` FOREIGN KEY (`clase`) REFERENCES `clase` (`clase`) ON UPDATE CASCADE,
   ADD CONSTRAINT `portafolio_ibfk_6` FOREIGN KEY (`tipo`) REFERENCES `tipo` (`tipo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `portafolio_ibfk_7` FOREIGN KEY (`producto`) REFERENCES `producto` (`producto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `portafolio_ibfk_7` FOREIGN KEY (`producto`) REFERENCES `producto` (`producto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `portafolio_ibfk_8` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`cliente`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`agencia`) REFERENCES `agencia` (`agencia`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`entidad`) REFERENCES `entidad` (`entidad`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`entidad`) REFERENCES `entidad` (`entidad`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_4` FOREIGN KEY (`agencia`) REFERENCES `agencia` (`agencia`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
