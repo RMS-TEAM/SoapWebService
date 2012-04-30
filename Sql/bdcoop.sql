@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-04-2012 a las 19:07:09
--- Versión del servidor: 5.5.16
--- Versión de PHP: 5.3.8
+-- Tiempo de generación: 30-04-2012 a las 17:12:37
+-- Versión del servidor: 5.5.20
+-- Versión de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `agencia`
 --
 
-DROP TABLE IF EXISTS `agencia`;
 CREATE TABLE IF NOT EXISTS `agencia` (
   `agencia` int(11) NOT NULL,
   `entidad` int(11) NOT NULL,
@@ -77,7 +76,6 @@ INSERT INTO `agencia` (`agencia`, `entidad`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `clase`
 --
 
-DROP TABLE IF EXISTS `clase`;
 CREATE TABLE IF NOT EXISTS `clase` (
   `clase` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -101,7 +99,6 @@ INSERT INTO `clase` (`clase`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `cliente` int(11) NOT NULL,
   `nombre1` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -135,7 +132,6 @@ INSERT INTO `cliente` (`cliente`, `nombre1`, `nombre2`, `apellido1`, `razon_soci
 -- Estructura de tabla para la tabla `entidad`
 --
 
-DROP TABLE IF EXISTS `entidad`;
 CREATE TABLE IF NOT EXISTS `entidad` (
   `entidad` int(11) NOT NULL,
   `nombre` char(30) COLLATE latin1_spanish_ci NOT NULL,
@@ -164,7 +160,6 @@ INSERT INTO `entidad` (`entidad`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `movimiento`
 --
 
-DROP TABLE IF EXISTS `movimiento`;
 CREATE TABLE IF NOT EXISTS `movimiento` (
   `entidad` int(11) NOT NULL,
   `agencia` int(11) NOT NULL,
@@ -199,7 +194,6 @@ CREATE TABLE IF NOT EXISTS `movimiento` (
 -- Estructura de tabla para la tabla `portafolio`
 --
 
-DROP TABLE IF EXISTS `portafolio`;
 CREATE TABLE IF NOT EXISTS `portafolio` (
   `entidad` int(11) NOT NULL,
   `agencia` int(11) NOT NULL,
@@ -244,11 +238,11 @@ CREATE TABLE IF NOT EXISTS `portafolio` (
 --
 
 INSERT INTO `portafolio` (`entidad`, `agencia`, `clase`, `tipo`, `producto`, `cliente`, `nro_producto`, `fecha_apertura`, `fecha_vencimiento`, `fecha_ultimaprorroga`, `fecha_ultliquidacion`, `fecha_ultcausacion`, `fecha_ultcorte`, `saldo_actual`, `int_pagar`, `int_causado`, `tasa_inicial`, `tasa_mora`, `plazo`, `tipo_periodo`, `nro_periodo`, `periodos_pasado`, `periodos_pagados`, `tipo_cuota`, `cuota`, `cuota_interes`, `cuota_capital`) VALUES
-(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', 1000000, 100000, 20000, 18, 0, 12, 1, 12, 3, 0, 1, 20000, 0, 0),
-(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', 2000000, 250000, 120000, 19, 0, 24, 1, 24, 14, 0, 0, 0, 0, 0),
-(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', 1000000, 100000, 20000, 18, 0, 12, 1, 12, 3, 0, 1, 20000, 0, 0),
-(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', 2000000, 250000, 120000, 19, 0, 24, 1, 24, 14, 0, 0, 0, 0, 0),
-(1, 1, 2, 4, 202, 71171321, 6, '2011-04-28', '2012-12-28', '0000-00-00', '2012-04-26', '2012-03-31', '2012-04-27', 3000000, 200000, 10000, 27, 30, 36, 1, 36, 18, 17, 1, 250000, 120000, 130000);
+(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', '1000000', '100000', '20000', '18', '0', 12, 1, 12, 3, 0, 1, '20000', '0', '0'),
+(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', '2000000', '250000', '120000', '19', '0', 24, 1, 24, 14, 0, 0, '0', '0', '0'),
+(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', '1000000', '100000', '20000', '18', '0', 12, 1, 12, 3, 0, 1, '20000', '0', '0'),
+(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', '2000000', '250000', '120000', '19', '0', 24, 1, 24, 14, 0, 0, '0', '0', '0'),
+(1, 1, 2, 4, 202, 71171321, 6, '2011-04-28', '2012-12-28', '0000-00-00', '2012-04-26', '2012-03-31', '2012-04-27', '3000000', '200000', '10000', '27', '30', 36, 1, 36, 18, 17, 1, '250000', '120000', '130000');
 
 -- --------------------------------------------------------
 
@@ -256,7 +250,6 @@ INSERT INTO `portafolio` (`entidad`, `agencia`, `clase`, `tipo`, `producto`, `cl
 -- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `producto` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -292,7 +285,6 @@ INSERT INTO `producto` (`producto`, `nombre`, `entidad`, `agencia`, `clase`, `ti
 -- Estructura de tabla para la tabla `tipo`
 --
 
-DROP TABLE IF EXISTS `tipo`;
 CREATE TABLE IF NOT EXISTS `tipo` (
   `tipo` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -321,17 +313,10 @@ INSERT INTO `tipo` (`tipo`, `nombre`, `clase`) VALUES
 -- Estructura de tabla para la tabla `token`
 --
 
-DROP TABLE IF EXISTS `token`;
 CREATE TABLE IF NOT EXISTS `token` (
-  `user_token` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `token`
---
-
-INSERT INTO `token` (`user_token`) VALUES
-('61i3l03fmh4qincfmrbcap910b 1335557684675');
+  `user_token` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`user_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -339,7 +324,6 @@ INSERT INTO `token` (`user_token`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario` int(11) NOT NULL,
   `entidad` int(11) NOT NULL,
