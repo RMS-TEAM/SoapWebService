@@ -1,4 +1,4 @@
-module UserHelper
+module UsersHelper
   def total(cantidades)
     @acum = 0
     cantidades.each do |value|
