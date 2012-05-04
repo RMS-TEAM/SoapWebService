@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       client = soap_service
-      respuesta = client.request :web, :ingresar, :body=> {"arg0"=> cedula, "arg1" => pass}
+      respuesta = client.request :web, :ingresar, :body=> {"arg0"=> cedula, "arg1" => pass, "arg2" => cooperativa}
       if respuesta.success?
         r = respuesta.to_array(:ingresar_response).first
         if r
@@ -71,6 +71,7 @@ class UsersController < ApplicationController
 
   def destroy
     sign_out
+    flash[:notice] = "Salida Exitosa"
     redirect_to root_path
   end
 

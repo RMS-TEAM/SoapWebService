@@ -26,7 +26,7 @@ public class LoginDAO implements InterfaceDAO {
     public Entidad find(ArrayList entidad) throws SQLException {
         try {
             Connection con = JDBCConnection.getConexion();
-            String orden = "SELECT * FROM usuario where usuario ='"+entidad.get(0) +"' and clave ='"+entidad.get(1) +"'";
+            String orden = "SELECT * FROM usuario where usuario ='"+entidad.get(0) +"' and clave ='"+entidad.get(1) +"' and entidad = (SELECT entidad FROM entidad WHERE nombre = '"+entidad.get(2)+"')";
             java.sql.Statement sentencia = con.createStatement();
             ResultSet rs = sentencia.executeQuery(orden);
             Login login = new Login();

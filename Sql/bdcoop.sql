@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-04-2012 a las 17:12:37
--- Versión del servidor: 5.5.20
--- Versión de PHP: 5.3.10
+-- Tiempo de generación: 04-05-2012 a las 18:37:36
+-- Versión del servidor: 5.5.16
+-- Versión de PHP: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -133,10 +133,10 @@ INSERT INTO `cliente` (`cliente`, `nombre1`, `nombre2`, `apellido1`, `razon_soci
 --
 
 CREATE TABLE IF NOT EXISTS `entidad` (
-  `entidad` int(11) NOT NULL,
+  `entidad` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` char(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`entidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `entidad`
@@ -152,7 +152,8 @@ INSERT INTO `entidad` (`entidad`, `nombre`) VALUES
 (7, 'COOPRUDEA'),
 (8, 'UTRAHUILCA'),
 (9, 'FODUN'),
-(10, 'VISIONAMOS');
+(10, 'VISIONAMOS'),
+(11, 'COOMEVA');
 
 -- --------------------------------------------------------
 
@@ -238,11 +239,11 @@ CREATE TABLE IF NOT EXISTS `portafolio` (
 --
 
 INSERT INTO `portafolio` (`entidad`, `agencia`, `clase`, `tipo`, `producto`, `cliente`, `nro_producto`, `fecha_apertura`, `fecha_vencimiento`, `fecha_ultimaprorroga`, `fecha_ultliquidacion`, `fecha_ultcausacion`, `fecha_ultcorte`, `saldo_actual`, `int_pagar`, `int_causado`, `tasa_inicial`, `tasa_mora`, `plazo`, `tipo_periodo`, `nro_periodo`, `periodos_pasado`, `periodos_pagados`, `tipo_cuota`, `cuota`, `cuota_interes`, `cuota_capital`) VALUES
-(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', '1000000', '100000', '20000', '18', '0', 12, 1, 12, 3, 0, 1, '20000', '0', '0'),
-(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', '2000000', '250000', '120000', '19', '0', 24, 1, 24, 14, 0, 0, '0', '0', '0'),
-(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', '1000000', '100000', '20000', '18', '0', 12, 1, 12, 3, 0, 1, '20000', '0', '0'),
-(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', '2000000', '250000', '120000', '19', '0', 24, 1, 24, 14, 0, 0, '0', '0', '0'),
-(1, 1, 2, 4, 202, 71171321, 6, '2011-04-28', '2012-12-28', '0000-00-00', '2012-04-26', '2012-03-31', '2012-04-27', '3000000', '200000', '10000', '27', '30', 36, 1, 36, 18, 17, 1, '250000', '120000', '130000');
+(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', 1000000, 100000, 20000, 18, 0, 12, 1, 12, 3, 0, 1, 20000, 0, 0),
+(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', 2000000, 250000, 120000, 19, 0, 24, 1, 24, 14, 0, 0, 0, 0, 0),
+(1, 1, 1, 1, 1, 71171321, 1, '2012-01-09', '2013-04-11', '0000-00-00', '2012-04-27', '2012-03-29', '2012-04-27', 1000000, 100000, 20000, 18, 0, 12, 1, 12, 3, 0, 1, 20000, 0, 0),
+(1, 1, 1, 3, 3, 71171321, 2, '2011-01-31', '2013-01-31', '0000-00-00', '2012-03-31', '0000-00-00', '0000-00-00', 2000000, 250000, 120000, 19, 0, 24, 1, 24, 14, 0, 0, 0, 0, 0),
+(1, 1, 2, 4, 202, 71171321, 6, '2011-04-28', '2012-12-28', '0000-00-00', '2012-04-26', '2012-03-31', '2012-04-27', 3000000, 200000, 10000, 27, 30, 36, 1, 36, 18, 17, 1, 250000, 120000, 130000);
 
 -- --------------------------------------------------------
 
@@ -330,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `agencia` int(11) NOT NULL,
   `nombre` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `apodo` char(1) COLLATE latin1_spanish_ci NOT NULL,
-  `clave` char(1) COLLATE latin1_spanish_ci NOT NULL,
+  `clave` int(4) NOT NULL,
   `id_usuario` char(1) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`usuario`),
   KEY `entidad` (`entidad`),
@@ -342,8 +343,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario`, `entidad`, `agencia`, `nombre`, `apodo`, `clave`, `id_usuario`) VALUES
-(1, 1, 1, 'N', 'N', '1', 'N'),
-(12, 1, 1, 'n', '', '1', '');
+(1, 1, 1, 'N', 'N', 1, 'N'),
+(12, 1, 1, 'n', '', 1, ''),
+(123456, 11, 2, 'M', 'M', 1234, '3');
 
 --
 -- Restricciones para tablas volcadas

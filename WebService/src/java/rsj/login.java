@@ -38,13 +38,14 @@ public class login {
      * Metodo para ingresar a la plataforma
      */
     @WebMethod
-    public String[] ingresar(String cedula, String pass){
+    public String[] ingresar(String cedula, String pass, String cooperativa){
         Secure secure = new Secure();
         String retorne[] = new String[3];
         try{
             ArrayList al = new ArrayList();
             al.add(cedula);
             al.add(pass);
+            al.add(cooperativa);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("login");
             Login loginEnt = (Login) daoEntidad.find(al);
             if(loginEnt.getCedula().equals(cedula) && loginEnt.getPassword().equals(pass)) {
@@ -53,12 +54,14 @@ public class login {
                 retorne[2] = secure.generarToken(); 
             }else{
                 retorne[0] = "false";
-                retorne[1] = "usuario o contraseña erronea ";
+                retorne[1] = "Datos de entrada erroneos ";
             }
+            return retorne;
         }catch(Exception e){
             System.out.println("Error: SQL\n"+e.getMessage());
+            retorne [0] = "false";
+            return retorne;
         }        
-        return retorne;
     }
     
     @WebMethod
