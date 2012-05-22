@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     if cookies[:token].nil? || cookies[:token].blank?
-      return false
+       false
     else
       client = soap_service
       respuesta = client.request :web, :conectado, :body=> {"arg0"=> cookies[:token]}
@@ -45,10 +45,10 @@ class ApplicationController < ActionController::Base
           respuesta = r[:return]
         end
       end
-      if respuesta == false
+      if respuesta.eql? false
         sign_out
       end
-      return respuesta
+       respuesta
     end
   end
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_filter :autorizado, :only=>[:show, :detalles, :show]
   def index
     if signed_in?
       redirect_to "/users/new"
@@ -73,6 +73,14 @@ class UsersController < ApplicationController
     sign_out
     flash[:notice] = "Salida Exitosa"
     redirect_to root_path
+  end
+
+  private
+
+  def autorizado
+    if !signed_in?
+      redirect_to "/users/new", :alert => "No neaaaa"
+    end
   end
 
 end
