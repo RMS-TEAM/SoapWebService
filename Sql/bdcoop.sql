@@ -3,7 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
+<<<<<<< HEAD
 -- Tiempo de generación: 23-05-2012 a las 00:54:01
+=======
+-- Tiempo de generación: 04-05-2012 a las 18:37:36
+>>>>>>> 51ccab9714dfa675e69e36a2bd2303f309edeb77
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -133,10 +137,10 @@ INSERT INTO `cliente` (`cliente`, `nombre1`, `nombre2`, `apellido1`, `razon_soci
 --
 
 CREATE TABLE IF NOT EXISTS `entidad` (
-  `entidad` int(11) NOT NULL,
+  `entidad` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` char(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`entidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=12 ;
 
 --
 -- Volcado de datos para la tabla `entidad`
@@ -152,7 +156,8 @@ INSERT INTO `entidad` (`entidad`, `nombre`) VALUES
 (7, 'COOPRUDEA'),
 (8, 'UTRAHUILCA'),
 (9, 'FODUN'),
-(10, 'VISIONAMOS');
+(10, 'VISIONAMOS'),
+(11, 'COOMEVA');
 
 -- --------------------------------------------------------
 
@@ -314,15 +319,9 @@ INSERT INTO `tipo` (`tipo`, `nombre`, `clase`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `token` (
-  `user_token` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `token`
---
-
-INSERT INTO `token` (`user_token`) VALUES
-('61i3l03fmh4qincfmrbcap910b 1335557684675');
+  `user_token` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY (`user_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -336,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `agencia` int(11) NOT NULL,
   `nombre` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `apodo` char(1) COLLATE latin1_spanish_ci NOT NULL,
-  `clave` char(1) COLLATE latin1_spanish_ci NOT NULL,
+  `clave` int(4) NOT NULL,
   `id_usuario` char(1) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`usuario`),
   KEY `entidad` (`entidad`),
@@ -348,8 +347,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario`, `entidad`, `agencia`, `nombre`, `apodo`, `clave`, `id_usuario`) VALUES
-(1, 1, 1, 'N', 'N', '1', 'N'),
-(12, 1, 1, 'n', '', '1', '');
+(1, 1, 1, 'N', 'N', 1, 'N'),
+(12, 1, 1, 'n', '', 1, ''),
+(123456, 11, 2, 'M', 'M', 1234, '3');
 
 --
 -- Restricciones para tablas volcadas
