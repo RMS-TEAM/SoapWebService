@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-04-2012 a las 19:07:09
+-- Tiempo de generación: 23-05-2012 a las 00:54:01
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `agencia`
 --
 
-DROP TABLE IF EXISTS `agencia`;
 CREATE TABLE IF NOT EXISTS `agencia` (
   `agencia` int(11) NOT NULL,
   `entidad` int(11) NOT NULL,
@@ -77,7 +76,6 @@ INSERT INTO `agencia` (`agencia`, `entidad`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `clase`
 --
 
-DROP TABLE IF EXISTS `clase`;
 CREATE TABLE IF NOT EXISTS `clase` (
   `clase` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -101,7 +99,6 @@ INSERT INTO `clase` (`clase`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `cliente` int(11) NOT NULL,
   `nombre1` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -135,7 +132,6 @@ INSERT INTO `cliente` (`cliente`, `nombre1`, `nombre2`, `apellido1`, `razon_soci
 -- Estructura de tabla para la tabla `entidad`
 --
 
-DROP TABLE IF EXISTS `entidad`;
 CREATE TABLE IF NOT EXISTS `entidad` (
   `entidad` int(11) NOT NULL,
   `nombre` char(30) COLLATE latin1_spanish_ci NOT NULL,
@@ -164,7 +160,6 @@ INSERT INTO `entidad` (`entidad`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `movimiento`
 --
 
-DROP TABLE IF EXISTS `movimiento`;
 CREATE TABLE IF NOT EXISTS `movimiento` (
   `entidad` int(11) NOT NULL,
   `agencia` int(11) NOT NULL,
@@ -199,7 +194,6 @@ CREATE TABLE IF NOT EXISTS `movimiento` (
 -- Estructura de tabla para la tabla `portafolio`
 --
 
-DROP TABLE IF EXISTS `portafolio`;
 CREATE TABLE IF NOT EXISTS `portafolio` (
   `entidad` int(11) NOT NULL,
   `agencia` int(11) NOT NULL,
@@ -256,7 +250,6 @@ INSERT INTO `portafolio` (`entidad`, `agencia`, `clase`, `tipo`, `producto`, `cl
 -- Estructura de tabla para la tabla `producto`
 --
 
-DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `producto` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -292,7 +285,6 @@ INSERT INTO `producto` (`producto`, `nombre`, `entidad`, `agencia`, `clase`, `ti
 -- Estructura de tabla para la tabla `tipo`
 --
 
-DROP TABLE IF EXISTS `tipo`;
 CREATE TABLE IF NOT EXISTS `tipo` (
   `tipo` int(11) NOT NULL,
   `nombre` char(20) COLLATE latin1_spanish_ci NOT NULL,
@@ -321,7 +313,6 @@ INSERT INTO `tipo` (`tipo`, `nombre`, `clase`) VALUES
 -- Estructura de tabla para la tabla `token`
 --
 
-DROP TABLE IF EXISTS `token`;
 CREATE TABLE IF NOT EXISTS `token` (
   `user_token` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -339,7 +330,6 @@ INSERT INTO `token` (`user_token`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario` int(11) NOT NULL,
   `entidad` int(11) NOT NULL,
