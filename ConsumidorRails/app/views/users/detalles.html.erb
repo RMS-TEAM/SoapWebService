@@ -1,5 +1,13 @@
 
-<%= render 'users/user_form' %>
+<% render 'users/user_form' %>
+
+<div class="user">
+  <h2>Hola James Benitez</h2>
+  <h4>Su ultima visita a la plataforma fue <%= Time.now.asctime %></h4>
+</div>
+Cuenta # 54567856<br>
+Tipo, Credito para Casa<br>
+Saldo, 20'000.000 <br>
 
 <div class="detalles">
     <table>
@@ -14,8 +22,29 @@
           <th class="titulo2">Monto</th>
         </tr>
         <tr>
-          <td>a</td>
+          <td><%= Time.now - 10.days %></td>
+          <td>Sucursal Bello</td>
+          <td>Pago de couta</td>
+          <td>5'000.000</td>
         </tr>
+      <tr>
+        <td><%= Time.now - 1.month %></td>
+        <td>Sucursal Centro</td>
+        <td>Pago de couta</td>
+        <td>5'000.000</td>
+      </tr>
+      <tr>
+        <td><%= Time.now - 2.month %></td>
+        <td>Sucursal Bello</td>
+        <td>Pago de couta</td>
+        <td>5'000.000</td>
+      </tr>
+      <tr>
+        <td><%= Time.now - 3.month %></td>
+        <td>Sucursal Bello</td>
+        <td>Pago de couta</td>
+        <td>5'000.000</td>
+      </tr>
     </table>
   
 </div>
