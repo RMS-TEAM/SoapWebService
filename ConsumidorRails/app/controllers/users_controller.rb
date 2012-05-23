@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :autorizado, :only=>[:show, :detalles, :show]
   def index
     if signed_in?
-      redirect_to "/users/new"
+      redirect_to "/users/show"
     else
       @title = "Banca Eletronica Cooperativa"
       client = soap_service
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
             set_token respuesta[2]
             set_cedula(cedula)
             set_cooperativa(cooperativa)
+            redirect_to '/users/show'
           else
             flash[:error] = @mensaje.capitalize
             redirect_to root_path
