@@ -1,46 +1,54 @@
-
 <div class="user_info">
   <div class="user">
-    <h2>Hola James Benitez</h2>
-    <h4>Su ultima visita a la plataforma fue <%= Time.now.asctime %></h4>
+    <h3>
+      Usuario: <%= get_cedula %>
+      <div class="ultima">Su ultima visita a la plataforma fue: <%= get_ultima_visita %></div><br />
+      Cooperativa: <%= get_cooperativa %>
+
+    </h3>
+
   </div>
   <div class="cuentas">
-    <table class="tabla izq">
+    <table class="tablaAhorro">
 
       <tr>
-        <th colspan="4" class="tabla-izq" width="50%">Ahorros</th>
+        <th colspan="4" class="tabla-izq">Ahorros</th>
       </tr>
       <tr>
-        <th class="titulo2">Cooperativa</th>
-        <th class="titulo2">Nombre de cuenta</th>
-        <th class="titulo2">Numero</th>
+        <th class="titulo2">Numero de cuenta</th>
+        <th class="titulo2">Tipo</th>
+        <th class="titulo2">Sucursal</th>
         <th class="titulo2">Saldo Disponible</th>
       </tr>
-       <tr>
-         <td>oeooeoe</td>
-         <td>oeooeoe</td>
-         <td>oeooeoe</td>
-         <td>oeooeoe</td>
-       </tr>
-      <% @response1.each do |dato|%>
-      <tr>
-        <td><%= dato[0] %></td>
-        <td><%=dato[1]%></td>
-        <td><%=link_to dato[2], '#'%></td>
-        <td><%= number_to_currency(dato[3]) %></td>
-
-      </tr>
+      <% total = 0%>
+      <% @ahorros.each do |ahorro| %>
+        <% if (ahorro.split("// ")[4].eql?"AHORROS" or ahorro.split("// ")[4].eql?"APORTES" or ahorro.split("// ")[4].eql?"SEGUROS") %>
+            <tr>
+              <td>
+                <%= link_to ahorro.split("// ")[0].capitalize, detalles_path(:cuenta => ahorro.split("// ")[0].to_i, :tipo => ahorro.split("// ")[1].capitalize, :saldo => number_to_currency(ahorro.split("// ")[3].to_i) )%>
+              </td>
+              <td>
+                <%= ahorro.split("// ")[1].capitalize %>
+              </td>
+              <td>
+                <%= ahorro.split("// ")[2].capitalize %>
+              </td>
+              <td>
+                <%= number_to_currency(ahorro.split("// ")[3].to_i) %>
+              </td>
+            </tr>
+            <% total = ahorro.split("// ")[3].to_i + total  %>
+        <% end %>
       <% end %>
       <tr>
         <td class="espacio" colspan="2"></td>
         <td class="total izq">Total</td>
-        <td class="total der"><strong><%= number_to_currency(total(@response1)) %></strong></td>
+        <td class="total der"><strong><%= number_to_currency(total) %></strong></td>
       </tr>
-
     </table>
 
 
-    <table class="tabla der">
+    <table class="tablaCredito">
       <tr>
         <th colspan="4" class="tabla-der" width="50%">Creditos</th>
 

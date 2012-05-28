@@ -3,7 +3,7 @@
 <h1>Ingreso</h1>
 <%= form_tag("/users/new", :method => "post") do %>
 
-<table>
+<table class="ingreso">
   <tr>
     <td><%= label_tag(:cedula, "Cedula:") %></td>
     <td><%= text_field_tag(:cedula) %></td>

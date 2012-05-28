@@ -9,6 +9,10 @@ public class FactoryDAO {
             return new TokenDAO();
         if(dao.equals("cooperativa"))
             return new CooperativaDAO();
+        if(dao.equals("ahorros"))
+            return new AhorrosDAO();
+        if(dao.equals("ahorrosDetalle"))
+            return new AhorrosDetalleDAO();
         return null;
     }
 }

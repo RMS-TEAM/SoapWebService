@@ -42,7 +42,7 @@
 }
 
 
-#content table{
+#content .ingreso{
   border-spacing: 0px;
   width: 100%;
   margin: auto;
@@ -58,7 +58,6 @@
 
 #content .user_info table .tabla-izq{
   border-radius: 5px 5px 0 0;
-
 }
 
 #content .user_info table .tabla-der{
@@ -105,18 +104,7 @@
   background-color:  #FAFAFB;
 }
 
-#content .user_info .tabla.izq{
-  float: left;
-  width: 50%
-}
-#content .user_info .tabla.der{
-  float: right;
-  width: 50%;
 
-}
-.login{
-
-}
 .ajustar{
 margin-top: 20px;
 margin-bottom: 20px;
@@ -125,10 +113,51 @@ clear: both;
 
 #content .detalles{
   margin-top: 20px;
+  border-spacing: 0px;
+  width: 100%;
+  margin: auto;
+  margin-top:50px;
+  border-radius: 10px;
+}
+
+.tablaAhorro{
+  border-spacing: 0px;
+  margin-top:50px;
+  border-radius: 10px;
+  width: 49%;
+  float: left;
+}
+.tabla-izq{
+  text-align: center;
+}
+
+.tablaCredito{
+  border-spacing: 0px;
+  margin-top:50px;
+  border-radius: 10px;
+  width: 49%;
+  float: right;
+}
+.tabla-der{
+  text-align: center;
 }
 
 #content .detalles .titulo{
   border-radius: 5px 5px 0 0  ;
+}
+
+.titulo{
+  text-align: center;
+}
+
+.ultima{
+  float: right;
+  font-size: 16px;
+}
+
+.detallesCuenta{
+  text-align: left;
+  width: 20%;
 }
 
 

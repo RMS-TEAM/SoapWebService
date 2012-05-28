@@ -14,7 +14,7 @@ public class TokenDAO implements InterfaceDAO {
         try {
             Connection con = JDBCConnection.getConexion();
             //// Si la condición es null o vacia, no hay parte WHERE
-            String orden = "INSERT INTO token VALUES('"+entidad.get(0)+"')";
+            String orden = "INSERT INTO token VALUES('"+entidad.get(0) +"', '"+entidad.get(1)+"')";
             java.sql.Statement sentencia = con.createStatement();
             sentencia.executeUpdate(orden);
             sentencia.close();
@@ -54,12 +54,21 @@ public class TokenDAO implements InterfaceDAO {
 
     public int delete(ArrayList entidad) throws SQLException {
         try {
+            //Actualizar la fecha de la ultima conexion
             Connection con = JDBCConnection.getConexion();
-            //// Si la condición es null o vacia, no hay parte WHERE
-            String orden = "DELETE FROM token WHERE user_token = '"+entidad.get(0)+"'";
+            String orden = "UPDATE cliente SET ultima_visita = CURRENT_TIMESTAMP() WHERE cliente = '"+ entidad.get(0) +"'";
             java.sql.Statement sentencia = con.createStatement();
-            int eliminados = sentencia.executeUpdate(orden);
+            int modificado = sentencia.executeUpdate(orden);
             sentencia.close();
+            
+            //Eliminar el token de sesion
+            con = JDBCConnection.getConexion();
+            orden = "DELETE FROM token WHERE user_token = '"+entidad.get(1)+"'";
+            sentencia = con.createStatement();
+            int eliminados = sentencia.executeUpdate(orden);
+            sentencia.close();;
+            
+            
             return eliminados;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

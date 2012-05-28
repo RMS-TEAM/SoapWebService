@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :soap_service, :signed_in?, :get_token, :set_token, :set_cedula, :get_cedula, :set_cooperativa, :get_cooperativa, :sign_out
+  helper_method :soap_service, :signed_in?, :get_token, :set_token, :set_cedula, :get_cedula, :set_cooperativa, :get_cooperativa, :sign_out, :get_ultima_visita, :set_ultima_visita
 
   def soap_service
     @client = Savon::Client.new do
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     cookies[:cedula]
   end
 
+  def get_ultima_visita
+    cookies[:ultima_visita]
+  end
+
   def set_cedula(cedula)
     cookies[:cedula] = { :value => cedula, :expires => 10.minute.from_now }
   end
@@ -33,12 +37,16 @@ class ApplicationController < ActionController::Base
     cookies[:cooperativa] = { :value => cooperativa, :expires => 10.minute.from_now }
   end
 
+  def set_ultima_visita(ultima)
+    cookies[:ultima_visita] = { :value => ultima, :expires => 10.minute.from_now }
+  end
+
   def signed_in?
     if cookies[:token].nil? || cookies[:token].blank?
        false
     else
       client = soap_service
-      respuesta = client.request :web, :conectado, :body=> {"arg0"=> cookies[:token]}
+      respuesta = client.request :web, :conectado, :body=> {"arg0"=> get_cedula, "arg1"=> get_token}
       if respuesta.success?
         r = respuesta.to_array(:conectado_response).first
         if r
@@ -54,7 +62,7 @@ class ApplicationController < ActionController::Base
 
   def sign_out
     client = soap_service
-    respuesta = client.request :web, :salir, :body=> {"arg0"=> cookies[:token]}
+    respuesta = client.request :web, :salir, :body=> {"arg0"=> cookies[:cedula], "arg1" => cookies[:token]}
     if respuesta.success?
       r = respuesta.to_array(:conectado_response).first
       if r
@@ -64,6 +72,7 @@ class ApplicationController < ActionController::Base
     cookies.delete(:token)
     cookies.delete(:cedula)
     cookies.delete(:cooperativa)
+    cookies.delete(:ultima_visita)
   end
 
 end

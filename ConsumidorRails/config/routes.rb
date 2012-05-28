@@ -13,6 +13,7 @@ SoapApp::Application.routes.draw do
   get "control/restar"
 
   match "/about", :to => "pages#about"
+  match "/detalles", :to => "users#detalles"
 
   match '/signout', :to => 'users#destroy'
 

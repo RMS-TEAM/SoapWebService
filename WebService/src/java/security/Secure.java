@@ -15,12 +15,13 @@ public class Secure {
     /*
      * Meto para generar un token por cada sesion 
      */
-    public String generarToken(){
+    public String generarToken(String cedula){
         try{
             String token = new BigInteger(130, random).toString(32);
             token += " " + new Date().getTime();
 
             ArrayList al = new ArrayList();
+            al.add(cedula);
             al.add(token);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
             boolean tokenEnt = (boolean) daoEntidad.insert(al);
@@ -37,7 +38,7 @@ public class Secure {
     /*
      * Retorna si existe el token, el token solo dura 10 minutos para cada sesion
      */
-    public boolean existeToken(String token){
+    public boolean existeToken(String cedula, String token){
         try{
             long millsecPerMinute = 60 * 1000;
             String tok[] = token.split(" ");
@@ -51,7 +52,7 @@ public class Secure {
             Token tokenEnt = (Token) daoEntidad.find(al);
             
             if(diferencia > 10 && token.equals(tokenEnt.getToken())){        //Se paso el tiempo y se elimina el token
-                int tokenDelEnt = eliminarToken(token);
+                int tokenDelEnt = eliminarToken(cedula, token);
                 ret = false;
             }else{
                 ret = true;
@@ -63,9 +64,10 @@ public class Secure {
         }
     }
     
-    public int eliminarToken(String token){
+    public int eliminarToken(String cedula, String token){
         try{
             ArrayList al = new ArrayList();
+            al.add(cedula);
             al.add(token);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("token");
             int tokenDelEnt = (int) daoEntidad.delete(al);

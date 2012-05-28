@@ -1,50 +1,43 @@
-
-<% render 'users/user_form' %>
-
 <div class="user">
-  <h2>Hola James Benitez</h2>
-  <h4>Su ultima visita a la plataforma fue <%= Time.now.asctime %></h4>
-</div>
-Cuenta # 54567856<br>
-Tipo, Credito para Casa<br>
-Saldo, 20'000.000 <br>
+  <h3>
+        Usuario: <%= get_cedula %>
+        <div class="ultima">Su ultima visita a la plataforma fue: <%= get_ultima_visita %></div><br />
+        Cooperativa: <%= get_cooperativa %>
 
-<div class="detalles">
-    <table>
-        <tr>
-            <th colspan="4" class="titulo">Movimientos</th>
-        </tr>
-
-        <tr>
-          <th class="titulo2">Fecha y Hora</th>
-          <th class="titulo2">Lugar</th>
-          <th class="titulo2">Transacción</th>
-          <th class="titulo2">Monto</th>
-        </tr>
-        <tr>
-          <td><%= Time.now - 10.days %></td>
-          <td>Sucursal Bello</td>
-          <td>Pago de couta</td>
-          <td>5'000.000</td>
-        </tr>
-      <tr>
-        <td><%= Time.now - 1.month %></td>
-        <td>Sucursal Centro</td>
-        <td>Pago de couta</td>
-        <td>5'000.000</td>
-      </tr>
-      <tr>
-        <td><%= Time.now - 2.month %></td>
-        <td>Sucursal Bello</td>
-        <td>Pago de couta</td>
-        <td>5'000.000</td>
-      </tr>
-      <tr>
-        <td><%= Time.now - 3.month %></td>
-        <td>Sucursal Bello</td>
-        <td>Pago de couta</td>
-        <td>5'000.000</td>
-      </tr>
-    </table>
-  
+  </h3>
 </div>
+
+<table class="detallesCuenta">
+  <tr>
+    <td>Cuenta # </td>
+    <td><%= params[:cuenta] %></td>
+  </tr>
+  <tr>
+    <td>Tipo </td>
+    <td><%= params[:tipo] %></td>
+  </tr>
+  <tr>
+    <td>Saldo </td>
+    <td><%= params[:saldo] %></td>
+  </tr>
+</table>
+
+<table class="detalles">
+  <tr>
+     <th colspan="4" class="titulo">Movimientos</th>
+  </tr>
+  <tr>
+    <th class="titulo2">Fecha y Hora</th>
+    <th class="titulo2">Lugar</th>
+    <th class="titulo2">Transacción</th>
+    <th class="titulo2">Monto</th>
+  </tr>
+  <% @detalles.each do |detalle| %>
+    <tr>
+      <td><%= detalle.split("// ")[0] %></td>
+      <td><%= detalle.split("// ")[1] %></td>
+      <td></td>
+      <td><%= number_to_currency(detalle.split("// ")[2]) %></td>
+    </tr>
+  <% end %>
+</table>

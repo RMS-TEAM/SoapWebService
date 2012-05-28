@@ -5,22 +5,27 @@ class UsersController < ApplicationController
       redirect_to "/users/show"
     else
       @title = "Banca Eletronica Cooperativa"
-      client = soap_service
-      respuesta = client.request :web, :get_cooperativas
-      if respuesta.success?
-        r = respuesta.to_array(:get_cooperativas_response).first
-        if r
-          respuesta = r[:return]
-          entro = respuesta[0]
+      begin
+        client = soap_service
+        respuesta = client.request :web, :get_cooperativas
+        if respuesta.success?
+          r = respuesta.to_array(:get_cooperativas_response).first
+          if r
+            respuesta = r[:return]
+            entro = respuesta[0]
 
-          if entro
-            @cooperativas = respuesta[1..respuesta.length]
-          else
-            @cooperativas = []
-            flash[:error] = "Error al traer la lista de cooperativas"
-            redirect_to root_path
+            if entro
+              @cooperativas = respuesta[1..respuesta.length]
+            else
+              @cooperativas = []
+              flash[:error] = "Error al traer la lista de cooperativas"
+              redirect_to root_path
+            end
           end
         end
+      rescue
+        flash[:error] = "Error al cargar las cooperativas"
+        @cooperativas= []
       end
     end
   end
@@ -33,6 +38,7 @@ class UsersController < ApplicationController
     if signed_in?
       @mensaje = "Sigues conectado"
     elsif cedula.blank? || pass.blank? || cooperativa.blank?
+      flash[:error] = "Debes de llenar todos los datos"
       redirect_to root_path
     else
       client = soap_service
@@ -42,14 +48,14 @@ class UsersController < ApplicationController
         if r
           respuesta = r[:return]
           entro = respuesta[0]
-          @mensaje = respuesta[1]
           if entro
             set_token respuesta[2]
             set_cedula(cedula)
             set_cooperativa(cooperativa)
+            set_ultima_visita(respuesta[1])
             redirect_to '/users/show'
           else
-            flash[:error] = @mensaje.capitalize
+            flash[:error] = "Datos de entrada erroneos"
             redirect_to root_path
           end
         end
@@ -58,16 +64,40 @@ class UsersController < ApplicationController
   end
 
   def show
-     @title = "Saldos"
-     @response1  = [["cooprudea",'ahorro1','123-4567-89',50000],["cooprudea1",'ahorro2','123-4567-33',440000]]
-     @response2 = [['cooprudea', 'Casa', '54567856',40000000],['cooprudea', 'Estudios', '54666856',2000000],['cooprudea', 'Carro', '57856',25000000]]
+    @title = "Saldos"
+    client = soap_service
+    respuesta = client.request :web, :show, :body=> {"arg0"=> get_cedula}
+    if respuesta.success?
+      r = respuesta.to_array(:show_response).first
+      if r
+        respuesta = r[:return]
+        entro = respuesta[0]
+        if entro
+          @ahorros = respuesta[1..respuesta.size]
+        else
+          flash[:error] = "Error al traer los datos del servidor"
+        end
+      end
+    end
+    @response2 = [['cooprudea', 'Casa', '54567856',40000000],['cooprudea', 'Estudios', '54666856',2000000],['cooprudea', 'Carro', '57856',25000000]]
   end
 
   def detalles
-    @title = "movimientos"
-    @response1  = [["cooprudea",'ahorro1','123-4567-89',50000],["cooprudea1",'ahorro2','123-4567-33',440000]]
-    @response2 = [['cooprudea', 'Casa', '54567856',40000000],['cooprudea', 'Estudios', '54666856',2000000],['cooprudea', 'Carro', '57856',25000000]]
-
+    @title = "Movimientos"
+    client = soap_service
+    respuesta = client.request :web, :detalle, :body=> {"arg0"=> get_cedula, "arg1"=> params[:cuenta]}
+    if respuesta.success?
+      r = respuesta.to_array(:detalle_response).first
+      if r
+        respuesta = r[:return]
+        entro = respuesta[0]
+        if entro
+          @detalles = respuesta[1..respuesta.size]
+        else
+          flash[:error] = "Error al traer los datos del servidor"
+        end
+      end
+    end
   end
 
   def destroy
@@ -80,7 +110,8 @@ class UsersController < ApplicationController
 
   def autorizado
     if !signed_in?
-      redirect_to "/users/new", :alert => "No neaaaa"
+      flash[:error] = "Salida Exitosa"
+      redirect_to "/users/new"
     end
   end
 

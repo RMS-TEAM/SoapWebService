@@ -2,11 +2,9 @@ package DAO;
 
 import Gestion.Login;
 import com.mysql.jdbc.Connection;
-//import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,8 +29,9 @@ public class LoginDAO implements InterfaceDAO {
             ResultSet rs = sentencia.executeQuery(orden);
             Login login = new Login();
             while (rs.next()) {
-                login.setCedula(rs.getString("usuario"));
+                login.setCedula(rs.getString("cliente"));
                 login.setPassword(rs.getString("clave"));
+                login.setUltimaVisita(rs.getString("ultima_visita"));
             }
             sentencia.close();
             return login;

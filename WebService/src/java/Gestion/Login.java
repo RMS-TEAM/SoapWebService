@@ -8,6 +8,7 @@ public class Login implements Entidad {
 
     private String cedula;
     private String password;
+    private String ultimaVisita;
     
     public Login(){
         this.cedula = "";
@@ -33,5 +34,15 @@ public class Login implements Entidad {
     public boolean esIgual(Entidad entidad) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public String getUltimaVisita() {
+        return ultimaVisita;
+    }
+
+    public void setUltimaVisita(String ultimaVisita) {
+        this.ultimaVisita = ultimaVisita;
+    }
+    
+    
 
 }
