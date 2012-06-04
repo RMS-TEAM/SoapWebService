@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AhorrosDetalleDAO implements InterfaceDAO{
+public class CuentasDetalleDAO implements InterfaceDAO{
 
     @Override
     public boolean insert(ArrayList entidad) throws SQLException {
@@ -17,12 +17,12 @@ public class AhorrosDetalleDAO implements InterfaceDAO{
     public Entidad find(ArrayList entidad) throws SQLException {
         try {
             Connection con = JDBCConnection.getConexion();
-            String orden = "SELECT portafolio.fecha_ultliquidacion, agencia.nombre AS lugar, movimiento.saldo FROM movimiento, portafolio, agencia WHERE movimiento.cliente = '"+entidad.get(0) +"' AND movimiento.nro_producto = '"+entidad.get(1) +"' AND portafolio.nro_producto = movimiento.nro_producto AND agencia.agencia = movimiento.agencia";
+            String orden = "SELECT portafolio.fecha_ultliquidacion, agencia.nombre AS lugar, movimiento.saldo, entidad.nombre AS entidad FROM movimiento, portafolio, agencia, entidad WHERE movimiento.cliente = '"+entidad.get(0) +"' AND movimiento.nro_producto = '"+entidad.get(1) +"' AND portafolio.nro_producto = movimiento.nro_producto AND agencia.agencia = movimiento.agencia AND entidad.entidad = movimiento.entidad";
             java.sql.Statement sentencia = con.createStatement();
             ResultSet rs = sentencia.executeQuery(orden);
             Movimiento movimiento = new Movimiento();
             while (rs.next()) {
-                String a = rs.getString("fecha_ultliquidacion") + "// " + rs.getString("lugar") + "// " + rs.getString("saldo");
+                String a = rs.getString("fecha_ultliquidacion") + "// " + rs.getString("lugar") + "// " + rs.getString("entidad") + "// " + rs.getString("saldo");
                 movimiento.addMovimientos(a);  
             }
             sentencia.close();

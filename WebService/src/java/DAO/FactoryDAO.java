@@ -12,7 +12,7 @@ public class FactoryDAO {
         if(dao.equals("ahorros"))
             return new CuentaDAO();
         if(dao.equals("ahorrosDetalle"))
-            return new AhorrosDetalleDAO();
+            return new CuentasDetalleDAO();
         return null;
     }
 }

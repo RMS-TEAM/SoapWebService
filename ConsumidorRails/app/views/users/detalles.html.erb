@@ -32,15 +32,15 @@
   <tr>
     <th class="titulo2">Fecha y Hora</th>
     <th class="titulo2">Lugar</th>
-    <th class="titulo2">Transacción</th>
+    <th class="titulo2">Cooperativa</th>
     <th class="titulo2">Monto</th>
   </tr>
   <% @detalles.each do |detalle| %>
     <tr>
       <td><%= detalle.split("// ")[0] %></td>
       <td><%= detalle.split("// ")[1] %></td>
-      <td></td>
-      <td><%= number_to_currency(detalle.split("// ")[2]) %></td>
+      <td><%= detalle.split("// ")[2] %></td>
+      <td><%= number_to_currency(detalle.split("// ")[3]) %></td>
     </tr>
   <% end %>
 </table>
