@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         respuesta = r[:return]
         entro = respuesta[0]
         if entro
-          @ahorros = respuesta[1..respuesta.size]
+          @cuenta = respuesta[1..respuesta.size]
         else
           flash[:error] = "Error al traer los datos del servidor"
         end

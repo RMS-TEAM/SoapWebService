@@ -1,7 +1,10 @@
 <div class="user">
   <h3>
         Usuario: <%= get_cedula %>
-        <div class="ultima">Su ultima visita a la plataforma fue: <%= get_ultima_visita %></div><br />
+        <div class="ultima">
+          Su ultima visita a la plataforma fue: <%= get_ultima_visita %><br/>
+          Su ip es: <%= request.remote_ip %>
+        </div><br />
         Cooperativa: <%= get_cooperativa %>
 
   </h3>

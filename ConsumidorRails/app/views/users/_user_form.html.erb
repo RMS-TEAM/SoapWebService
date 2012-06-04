@@ -2,7 +2,10 @@
   <div class="user">
     <h3>
       Usuario: <%= get_cedula %>
-      <div class="ultima">Su ultima visita a la plataforma fue: <%= get_ultima_visita %></div><br />
+      <div class="ultima">
+        Su ultima visita a la plataforma fue: <%= get_ultima_visita %><br/>
+        Su ip es: <%= request.remote_ip %>
+      </div><br />
       Cooperativa: <%= get_cooperativa %>
 
     </h3>
@@ -21,7 +24,7 @@
         <th class="titulo2">Saldo Disponible</th>
       </tr>
       <% total = 0%>
-      <% @ahorros.each do |ahorro| %>
+      <% @cuenta.each do |ahorro| %>
         <% if (ahorro.split("// ")[4].eql?"AHORROS" or ahorro.split("// ")[4].eql?"APORTES" or ahorro.split("// ")[4].eql?"SEGUROS") %>
             <tr>
               <td>
@@ -55,25 +58,36 @@
       </tr>
 
       <tr>
-        <th class="titulo2">Cooperativa</th>
+        <th class="titulo2">Numero de cuenta</th>
         <th class="titulo2">Tipo de credito</th>
-        <th class="titulo2">Numero</th>
+        <th class="titulo2">Cooperativa</th>
         <th class="titulo2">Saldo </th>
       </tr>
 
-      <% @response2.each do |dato|%>
+      <% total = 0%>
+      <% @cuenta.each do |credito| %>
+        <% if (credito.split("// ")[4].eql?"CREDITOS" or credito.split("// ")[4].eql?"CONVENIOS RECAUDOS") %>
           <tr>
-            <td><%= dato[0] %></td>
-            <td><%=dato[1]%></td>
-            <td><%=link_to dato[2], '#'%></td>
-            <td><%= number_to_currency(dato[3]) %></td>
-
+            <td>
+              <%= link_to credito.split("// ")[0].capitalize, detalles_path(:cuenta => credito.split("// ")[0].to_i, :tipo => credito.split("// ")[1].capitalize, :saldo => number_to_currency(credito.split("// ")[3].to_i) )%>
+            </td>
+            <td>
+              <%= credito.split("// ")[1].capitalize %>
+            </td>
+            <td>
+              <%= credito.split("// ")[5].capitalize %>
+            </td>
+            <td>
+              <%= number_to_currency(credito.split("// ")[3].to_i) %>
+            </td>
           </tr>
+          <% total = credito.split("// ")[3].to_i + total  %>
+        <% end %>
       <% end %>
       <tr>
         <td class="espacio" colspan="2"></td>
         <td class="total izq">Total</td>
-        <td class="total der"><strong><%= number_to_currency(total(@response2)) %></strong></td>
+        <td class="total der"><strong><%= number_to_currency(total) %></strong></td>
       </tr>
     </table>
 

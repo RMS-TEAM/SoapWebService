@@ -2,7 +2,7 @@ package rsj;
 
 import DAO.FactoryDAO;
 import DAO.InterfaceDAO;
-import Gestion.Ahorros;
+import Gestion.Cuentas;
 import Gestion.Login;
 import Gestion.Movimiento;
 import java.util.ArrayList;
@@ -91,10 +91,10 @@ public class login {
             ArrayList al = new ArrayList();
             al.add(cedula);
             InterfaceDAO daoEntidad = FactoryDAO.getDAO("ahorros");
-            Ahorros ahorrosEnt = (Ahorros) daoEntidad.find(al);
-            if(ahorrosEnt.getAhorros() != null) {
+            Cuentas cuentasEnt = (Cuentas) daoEntidad.find(al);
+            if(cuentasEnt.getCuentas() != null) {
                 retorne.add("true");
-                ArrayList<String> ahorro = ahorrosEnt.getAhorros();
+                ArrayList<String> ahorro = cuentasEnt.getCuentas();
                 for(int i = 0; i < ahorro.size(); i++){
                     retorne.add(ahorro.get(i));
                 }
